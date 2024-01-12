@@ -1,5 +1,5 @@
 import { ImageBackground, StyleSheet, SafeAreaView } from 'react-native';
-import { useState } from 'react';
+import { useCallback, useState } from 'react';
 import { LinearGradient } from 'expo-linear-gradient';
 import { useFonts } from 'expo-font';
 import * as SplashScreen from 'expo-splash-screen';
@@ -21,6 +21,12 @@ export default function App() {
     'opens-sans': require('./assets/fonts/OpenSans-Regular.ttf'),
     'opens-sans-bold': require('./assets/fonts/OpenSans-Bold.ttf'),
   });
+
+  const onLayoutRootView = useCallback(async () => {
+    if (fontsLoaded) {
+      await SplashScreen.hideAsync();
+    }
+  }, [fontsLoaded])
 
   function pickedNumberHandler(pickedNumber){
     setUserNumber(pickedNumber);
@@ -45,6 +51,7 @@ export default function App() {
     <LinearGradient 
       colors={[colors.primary700, colors.accent500]} 
       style={styles.rootScreen}
+      onLayout={onLayoutRootView}
     >
       <ImageBackground 
         source={require('./assets/images/background.png')} 
