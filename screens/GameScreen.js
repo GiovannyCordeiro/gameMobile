@@ -5,6 +5,7 @@ import Title from "../components/ui/Title";
 import NumberContainer from "../components/game/NumberContainer";
 import PrimaryButton from "../components/ui/PrimaryButton";
 import InstructionText from "../components/ui/InstructionText";
+import Card from "../components/ui/Card";
 
 
 function generateRandomBetween(min, max, exclude) {
@@ -52,13 +53,17 @@ export default function GameScreen({userNumber, onGameOver}) {
     <View style={styles.screen}>
       <Title>Oponnent's Guess</Title>
       <NumberContainer>{currentGuess}</NumberContainer>
-      <View>
-        <InstructionText>Higher or Lower?</InstructionText>
-        <View>
-          <PrimaryButton onPress={nextGressHandler.bind(this, 'lower')}>-</PrimaryButton>
-          <PrimaryButton onPress={nextGressHandler.bind(this, 'greater')}>+</PrimaryButton>
+      <Card>
+        <InstructionText style={styles.instructionText}>Higher or Lower?</InstructionText>
+        <View style={styles.buttonsContainer}>
+          <View style={styles.buttonContainer}>
+            <PrimaryButton onPress={nextGressHandler.bind(this, 'lower')}>-</PrimaryButton>
+          </View>
+          <View style={styles.buttonContainer}>
+            <PrimaryButton onPress={nextGressHandler.bind(this, 'greater')}>+</PrimaryButton>
+          </View>
         </View>
-      </View>
+      </Card>
       <View>
         {/* Logs ROUNDS */}
       </View>
@@ -70,5 +75,14 @@ const styles = StyleSheet.create({
   screen: {
     flex: 1,
     padding: 24,
+  },
+  instructionText:{
+    marginBottom: 12
+  },
+  buttonsContainer: {
+    flexDirection: 'row'
+  },
+  buttonContainer: {
+    flex: 1
   }
 })
