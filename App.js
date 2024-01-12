@@ -2,6 +2,7 @@ import { ImageBackground, StyleSheet, SafeAreaView } from 'react-native';
 import { useState } from 'react';
 import { LinearGradient } from 'expo-linear-gradient';
 import { useFonts } from 'expo-font';
+import * as SplashScreen from 'expo-splash-screen';
 
 import StartGameScreen from './screens/StartGameScreen';
 import GameScreen from './screens/GameScreen';
@@ -9,12 +10,14 @@ import GameOverScreen from './screens/GameOverScreen';
 
 import colors from './util/Colors';
 
+SplashScreen.preventAutoHideAsync();
+
 export default function App() {
 
   const [userNumber, setUserNumber] = useState();
   const [gameIsOver, setGameIsOver] = useState(true);
 
-  useFonts({
+  const [fontsLoaded] = useFonts({
     'opens-sans': require('./assets/fonts/OpenSans-Regular.ttf'),
     'opens-sans-bold': require('./assets/fonts/OpenSans-Bold.ttf'),
   });
