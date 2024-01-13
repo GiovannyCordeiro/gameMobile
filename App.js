@@ -18,8 +18,8 @@ export default function App() {
   const [gameIsOver, setGameIsOver] = useState(true);
 
   const [fontsLoaded] = useFonts({
-    'opens-sans': require('./assets/fonts/OpenSans-Regular.ttf'),
-    'opens-sans-bold': require('./assets/fonts/OpenSans-Bold.ttf'),
+    'open-sans': require('./assets/fonts/OpenSans-Regular.ttf'),
+    'open-sans-bold': require('./assets/fonts/OpenSans-Bold.ttf'),
   });
 
   const onLayoutRootView = useCallback(async () => {
